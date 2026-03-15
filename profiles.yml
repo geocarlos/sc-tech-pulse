@@ -1,0 +1,13 @@
+sc_duckdb_profile:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: 'data/sc_business_data.duckdb'
+      attach:
+        - path: 'data/sc_entrepreneurship.duckdb'
+          alias: sc_entrepreneurship
+      threads: 4
+      extensions:
+        - httpfs
+        - parquet

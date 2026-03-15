@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_startups
+    description: "Cleaned and standardized startup data from the SC Tech Ecosystem."
+    columns:
+      - name: cnpj
+        description: "The unique identifier (Tax ID) for the company."
+        tests:
+          - unique
+          - not_null
+          - dbt_utils.expression_is_true:
+              arguments:
+                expression: |
+                  IN (
+                    SELECT regexp_replace(cnpj, '[^0-9]', '', 'g') 
+                    FROM {{ source('raw', 'raw_startups') }}
+                  )
+
+      - name: city_name
+        description: "The standardized name of the city in Santa Catarina."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Florianópolis', 'Joinville', 'Blumenau', 'Chapecó', 'Criciúma', 'Itajaí', 'São Francisco do Sul', 'Balneário Camboriú', 'Jaraguá do Sul']
+                quote: true
+
+      - name: active_employees
+        description: "Number of currently active employees."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: true
