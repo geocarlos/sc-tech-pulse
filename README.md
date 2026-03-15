@@ -6,7 +6,7 @@ The Santa Catarina Tech Pulse is a data engineering prototype designed to demons
 
 ### Project Scope and Data Integrity
 
-Note on Data: This project currently utilizes synthetic (mock) data for demonstration purposes. However, the system is architected as a plug-and-play framework; real-world data from public registries can be integrated into the raw layer to produce actual geographic economic insights, hopefully with little required (removing the mock data generation part from the pipeline is one of them).
+Note on Data: This project currently utilizes synthetic (mock) data for demonstration purposes. However, the system is architected as a plug-and-play framework; real-world data from public registries can be integrated into the raw layer to produce actual geographic economic insights, hopefully with just a few or no tweaks required.
 
 ## Technical Architecture
 
@@ -90,6 +90,14 @@ If you have the DuckDB standalone application installed and configured in your P
 ```bash
 uv run duckdb data/sc_business_data.duckdb "SELECT startup_rank, city_name, total_startups, total_employees FROM main_main.fct_startup_density LIMIT 5;"
 
+```
+
+### Run tests
+
+The tests are run with dbt and are defined in the file `models/staging/schema.yml`.
+
+```bash
+uv run dbt test
 ```
 
 ## Analytical Metrics
