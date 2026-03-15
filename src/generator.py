@@ -5,7 +5,7 @@ import random
 fake = Faker('pt_BR')
 
 def generate_sc_data(num_records=500):
-    cities = ['Florianópolis', 'Joinville', 'Blumenau', 'Chapecó', 'Criciúma', 'Itajaí']
+    cities = ['Florianópolis', 'Joinville', 'Blumenau', 'Chapecó', 'Criciúma', 'Itajaí', 'São Francisco do Sul', 'Balneário Camboriú', 'Jaraguá do sul']
     sectors = ['SaaS', 'FinTech', 'AgroTech', 'HealthTech', 'EdTech']
     
     data = []

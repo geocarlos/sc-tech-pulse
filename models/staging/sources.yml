@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw
+    database: sc_entrepreneurship
+    schema: main
+    tables:
+      - name: raw_startups
