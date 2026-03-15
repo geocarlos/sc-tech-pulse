@@ -68,7 +68,7 @@ uv run streamlit run app.py
 
 ```
 
-Note: Streamlit is run in a different environment because it requires Protobuf version different from the one required by dbt, so that both can't work in the same environment.
+Note: Streamlit is run in a different environment because it requires a Protobuf version different from the one required by dbt, so that both can't work in the same environment.
 
 ## Data Inspection and Troubleshooting
 
@@ -99,3 +99,26 @@ The pipeline transforms raw records into three primary metrics:
 1. Total Startups: Absolute count of active technology companies per municipality.
 2. Total Employees: Sum of the workforce within the specified sector and region.
 3. Avg Team Size: A ratio of employees to companies, used as a proxy for regional corporate maturity.
+
+## Future Improvements and Roadmap
+
+The following items have been identified as strategic enhancements to move this prototype toward a production-grade analytical platform:
+
+### 1. Integration of Empirical Data Sources
+
+The primary objective for the next phase is to replace the current synthetic generation layer with real-world data. Potential sources include public registries and federal open data repositories to provide authentic economic insights.
+
+### 2. Environment Toggle for Data Modes
+
+Implement a configuration-based switch (e.g., via environment variables) to allow the system to toggle seamlessly between **Mock Mode** (for development and testing) and **Production Mode** (for real-world data ingestion) without requiring code changes.
+
+### 3. Diversification of Input Protocols
+
+Expand the ingestion layer to support data formats beyond local CSV files. This includes:
+
+* Direct integration with cloud storage (Amazon S3 or Google Cloud Storage).
+* Connection to external SQL databases or specialized API endpoints.
+
+### 4. Decoupled API Service
+
+Transition the architecture to serve data as a standalone API. By abstracting the data layer from the Streamlit presentation, the system will be able to provide insights to multiple external consumers, such as mobile applications, enterprise BI tools, or third-party web services.
