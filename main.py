@@ -11,8 +11,7 @@ def run_pipeline():
     logging.info("Step 2: Ingesting into DuckDB...")
     load_to_duckdb()
 
-    logging.info("Step 3: Running dbt Transformations...")
-   
+    logging.info("Step 3: Running dbt Transformations...")   
     result = subprocess.run(["dbt", "build"], capture_output=True, text=True)
     
     if result.returncode == 0:
