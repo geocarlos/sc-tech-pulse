@@ -15,7 +15,14 @@ def run_pipeline():
     result = subprocess.run(["dbt", "build"], capture_output=True, text=True)
     
     if result.returncode == 0:
-        logging.info("Pipeline completed successfully!")
+        logging.info("dbt transformations completed successfully!")
+
+        logging.info("Step 4: Launching Streamlit Dashboard...")
+        try:
+            subprocess.Popen(["uv", "run", "streamlit", "run", "app.py"], cwd="presentation")
+            logging.info("Dashboard launched in your default browser.")
+        except Exception as e:
+            logging.error(f"Failed to launch Streamlit: {e}")
     else:
         logging.error(f"dbt failed: {result.stderr}")
 
