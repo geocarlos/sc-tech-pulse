@@ -53,8 +53,11 @@ uv run main.py
 Components can be run individually from the root directory:
 
 ```bash
-# Run mock data generator no CSV file is in data/raw
+# Run mock data generator if no CSV file is in data/raw
 uv run src/generator.py
+
+# Ingest data from CSV file to DuckDB
+uv run src/ingestion.py
 
 # Run data transformations
 uv run dbt build
