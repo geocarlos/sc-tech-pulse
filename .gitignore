@@ -5,3 +5,9 @@ data/*.duckdb
 # Python environment
 .venv/
 __pycache__/
+
+# dbt artifacts
+target/
+dbt_packages/
+logs/
+.user.yml
